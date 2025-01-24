@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  postgres-db-banking:
+    image: postgres:13
+    container_name: postgres-db-banking
+    environment:
+      POSTGRES_USER: testuser2
+      POSTGRES_PASSWORD: testpass2
+      POSTGRES_DB: banking
+    ports:
+      - "5432:5432"
+    networks:
+      - banking-network
+
+networks:
+  banking-network:
+    driver: bridge

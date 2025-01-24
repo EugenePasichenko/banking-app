@@ -1,0 +1,89 @@
+openapi: 3.0.1
+info:
+  title: BankingAPI
+  description: API for managing banking operations like deposit, withdraw, and transfer.
+  version: 1.0.0
+paths:
+  /banking/deposit:
+    post:
+      summary: Deposit funds into an account
+      description: Adds a specified amount to the account balance.
+      operationId: deposit
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DepositRequest'
+      responses:
+        '200':
+          description: Deposit successful
+        '500':
+          description: Error during deposit
+  /banking/withdraw:
+    post:
+      summary: Withdraw funds from an account
+      description: Deducts a specified amount from the account balance.
+      operationId: withdraw
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WithdrawRequest'
+      responses:
+        '200':
+          description: Withdrawal successful
+        '500':
+          description: Error during withdrawal
+  /banking/transfer:
+    post:
+      summary: Transfer funds between accounts
+      description: Transfers a specified amount from one account to another.
+      operationId: transfer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransferRequest'
+      responses:
+        '200':
+          description: Transfer successful
+        '500':
+          description: Error during transfer
+components:
+  schemas:
+    DepositRequest:
+      type: object
+      properties:
+        accountNumber:
+          type: string
+          example: "12345"
+        amount:
+          type: number
+          format: double
+          example: 100.00
+    WithdrawRequest:
+      type: object
+      properties:
+        accountNumber:
+          type: string
+          example: "12345"
+        amount:
+          type: number
+          format: double
+          example: 50.00
+    TransferRequest:
+      type: object
+      properties:
+        fromAccountNumber:
+          type: string
+          example: "12345"
+        toAccountNumber:
+          type: string
+          example: "67890"
+        amount:
+          type: number
+          format: double
+          example: 200.00
