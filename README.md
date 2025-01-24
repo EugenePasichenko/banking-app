@@ -31,8 +31,8 @@ To run the application with a PostgreSQL database in Docker, follow these steps:
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/your-repo/banking-application.git
-    cd banking-application
+    git clone https://github.com/EugenePasichenko/banking-app.git
+    cd banking-app
     ```
 
 2. **Start the containers:**
@@ -79,8 +79,8 @@ To run the application with a PostgreSQL database in Docker, follow these steps:
 
     - **Host**: `localhost`
     - **Port**: `5432`
-    - **User**: `user`
-    - **Password**: `password`
+    - **User**: `testuser2`
+    - **Password**: `testpass2`
     - **Database**: `banking`
 
    Alternatively, you can connect directly via Docker:
@@ -110,14 +110,6 @@ To run the application with a PostgreSQL database in Docker, follow these steps:
 ## Why Optimistic Locking?
 
 In a banking application, concurrent updates to the same account can lead to data inconsistencies, especially when two or more transactions modify the same account balance simultaneously. To handle this, we use **optimistic locking** to avoid conflicts without locking the records, which could cause performance degradation.
-
-### Optimistic Locking vs Pessimistic Locking
-
-- **Pessimistic Locking**: With pessimistic locking, a lock is placed on the resource when it is read, and no other transaction can modify the data until the lock is released. This can result in deadlocks or performance bottlenecks if there are many concurrent operations.
-
-- **Optimistic Locking**: Optimistic locking allows multiple transactions to work with the data at the same time. When a transaction updates a record, it checks whether another transaction has modified the record since it was read. If there’s a conflict (i.e., the version number of the record has changed), an exception is thrown, and the transaction can be retried. This approach is more suitable for high-concurrency scenarios, such as banking applications, where the likelihood of conflicts is lower.
-
-In our application, we use **OptimisticLockingFailureException** to detect conflicts and retry the operation using **Spring Retry**. This ensures that the application remains responsive even under heavy load and avoids the pitfalls of pessimistic locking, which could lead to resource contention.
 
 ## Conclusion
 
