@@ -116,6 +116,21 @@
 		</dependency>
 	</dependencies>
 
+	<!-- Reporting Plugins -->
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>3.1.0</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>3.4.1</version>
+			</plugin>
+		</plugins>
+	</reporting>
 	<!-- Build Plugins -->
 	<build>
 		<plugins>
@@ -147,7 +162,6 @@
 					</excludes>
 				</configuration>
 			</plugin>
-
 			<!-- OpenAPI Generator Maven Plugin -->
 			<plugin>
 				<groupId>org.openapitools</groupId>
